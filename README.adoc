@@ -163,7 +163,7 @@ extension ConversationTableViewCell {
 }
 ----
 
-==== Generate Adapter
+=== Generate Adapter
 
 [source, swift, subs="verbatim,attributes"]
 ----
