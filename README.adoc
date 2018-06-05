@@ -1,0 +1,169 @@
+:name: Boom
+:author: Elias Abel
+:author_esc: Elias%20Abel
+:mail: admin@meniny.cn
+:desc: an UITableView and UICollectionView manager with efficient, declarative and type-safe approach
+:icon: {name}.png
+:version: 1.0.0
+:na: N/A
+:ios: 9.0
+:macos: {na}
+:watchos: {na}
+:tvos: {na}
+:linux: {na}
+:xcode: 9.3
+:swift: 4.1
+:license: MIT
+:sep: %20%7C%20
+:platform: iOS
+// :toc: left
+:toclevels: 6
+:toc-title: TOC
+:source-highlighter: highlightjs
+// :source-highlighter: pygments
+= Meet `{name}`
+{author} <{mail}>
+v{version}, 2018-06-05
+
+[subs="attributes"]
+++++
+<p align="center">
+  <img src="./Assets/{icon}" alt="{name}" height="200px">
+  <br/><br/>
+  <img alt="Author" src="https://img.shields.io/badge/author-{author_esc}-blue.svg">
+  <img alt="EMail" src="https://img.shields.io/badge/mail-{mail}-orange.svg">
+  <img alt="MIT" src="https://img.shields.io/badge/license-{license}-blue.svg">
+  <br/>
+  <img alt="Version" src="https://img.shields.io/badge/version-{version}-brightgreen.svg">
+  <img alt="Platforms" src="https://img.shields.io/badge/platform-{platform}-lightgrey.svg">
+  <img alt="Swift" src="https://img.shields.io/badge/swift-{swift}%2B-orange.svg">
+  <br/>
+  <img alt="Build Passing" src="https://img.shields.io/badge/build-passing-brightgreen.svg">
+  <img alt="Cocoapods" src="https://img.shields.io/badge/cocoapods-compatible-brightgreen.svg">
+  <img alt="Carthage" src="https://img.shields.io/badge/carthage-compatible-brightgreen.svg">
+  <img alt="SPM" src="https://img.shields.io/badge/spm-compatible-brightgreen.svg">
+</p>
+++++
+
+:toc:
+
+== 🏵 Introduction
+
+**{name}** is {desc}.
+
+== 📋 Requirements
+
+[%header]
+|===
+2+^m|Type 1+^m|Requirement
+
+1.5+^.^|Platform ^|iOS ^|{ios}+
+^|macOS ^|{macos}
+^|tvOS ^|{tvos}
+^|watchOS ^|{watchos}
+^|Linux ^|{linux}
+
+^|IDE ^|Xcode ^| {xcode}+
+^|Language ^|Swift ^| {swift}+
+|===
+
+== 📲 Installation
+
+=== CocoaPods
+
+`{name}` is available on link:https://cocoapods.org[CocoaPods].
+
+[source, ruby, subs="verbatim,attributes"]
+----
+use_frameworks!
+pod '{name}'
+----
+
+=== Manually
+
+Copy all files in the `{name}` directory into your project.
+
+== 🛌 Dependency
+
+{na}
+
+== ❤️ Contribution
+
+You are welcome to fork and submit pull requests.
+
+== 🔖 License
+
+`{name}` is open-sourced software, licensed under the link:./LICENSE.md[`{license}`] license.
+
+== 🔫 Usage
+
+See the Sample Project for more detail.
+
+[source, swift, subs="verbatim,attributes"]
+----
+import {name}
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.setupUI()
+    }
+
+    func setupUI() {
+        self.view.backgroundColor = #colorLiteral(red:0.79, green:0.80, blue:0.67, alpha:1.00)
+
+        self.setupFlow()
+    }
+
+    func setupFlow() {
+        self.setupAdapter()
+
+        self.tableView.manager.add(section: self.generateSection())
+
+        self.tableView.manager.rowHeight = .autoLayout(estimated: 100)
+
+        self.tableView.manager.reloadData(after: { _ in
+            return TableReloadAnimations.default()
+        }, onEnd: nil)
+    }
+
+    func setupAdapter() {
+        let adapter = TableAdapter<CellData, ConversationTableViewCell>()
+        adapter.on.dequeue = { ctx in
+            ctx.cell?.avatarImageView.image = ctx.model.avatar
+            ctx.cell?.titleLbale?.text = ctx.model.title
+            ctx.cell?.subtitleLabel?.text = ctx.model.detail
+        }
+        adapter.on.tap = { ctx in
+            print("Tapped on \(ctx.model.identifier)")
+            return .deselectAnimated
+        }
+        self.tableView.manager.register(adapter: adapter)
+    }
+
+    func generateSection() -> TableSection {
+        let dataSet = (0..<10).map { i -> CellData in
+            return CellData.init(avatar: #imageLiteral(resourceName: "Doggie"), title: "Cell at \(i)", detail: "Boom~")
+        }
+
+        let header = TableSectionView<TableExampleHeaderView>()
+        header.on.height = { _ in
+            return 50
+        }
+
+        let footer = TableSectionView<TableFooterExample>()
+        footer.on.height = { _ in
+            return 30
+        }
+        footer.on.dequeue = { ctx in
+            ctx.view?.titleLabel?.text = "\(dataSet.count) Data"
+        }
+
+        return TableSection(headerView: header, footerView: footer, models: dataSet)
+    }
+}
+----

@@ -1,0 +1,16 @@
+PODS:
+  - Boom (1.0.0)
+
+DEPENDENCIES:
+  - Boom (from `../`)
+
+EXTERNAL SOURCES:
+  Boom:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Boom: 88934ab70d00b6258edda073beab3fb64225255c
+
+PODFILE CHECKSUM: ea15a271e234ef5351b59f7b9b46e0b5a4339e34
+
+COCOAPODS: 1.5.2
