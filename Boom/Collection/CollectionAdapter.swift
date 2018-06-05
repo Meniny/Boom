@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 
 /// The adapter identify a pair of model and cell used to represent the data.
-public class CollectionAdapter<M: BoomModel, C: BoomCell>: CollectionAdapterProtocol, CustomStringConvertible, AbstractAdapterProtocolFunctions {
+public class CollectionAdapter<M: BoomModel, C: BoomCell>: BoomAbstractAdapter, CustomStringConvertible, BoomAdapterFunctional {
 
 	public var modelType: Any.Type = M.self
 	public var cellType: Any.Type = C.self

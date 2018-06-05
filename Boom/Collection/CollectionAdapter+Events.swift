@@ -61,11 +61,11 @@ public extension CollectionManager {
 		var shouldUpdateFocus: ((_ context: UICollectionViewFocusUpdateContext) -> Bool)? = nil
 		var didUpdateFocus: ((_ context: UICollectionViewFocusUpdateContext, _ coordinator: UIFocusAnimationCoordinator) -> Void)? = nil
 		
-		var willDisplayHeader : ((HeaderFooterEvent) -> Void)? = nil
-		var willDisplayFooter : ((HeaderFooterEvent) -> Void)? = nil
+		var willDisplayHeader: ((HeaderFooterEvent) -> Void)? = nil
+		var willDisplayFooter: ((HeaderFooterEvent) -> Void)? = nil
 		
-		var endDisplayHeader : ((HeaderFooterEvent) -> Void)? = nil
-		var endDisplayFooter : ((HeaderFooterEvent) -> Void)? = nil
+		var endDisplayHeader: ((HeaderFooterEvent) -> Void)? = nil
+		var endDisplayFooter: ((HeaderFooterEvent) -> Void)? = nil
 	}
 	
 }

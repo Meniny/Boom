@@ -4,7 +4,7 @@
 :mail: admin@meniny.cn
 :desc: an UITableView and UICollectionView manager with efficient, declarative and type-safe approach
 :icon: {name}.png
-:version: 1.0.0
+:version: 1.0.1
 :na: N/A
 :ios: 9.0
 :macos: {na}

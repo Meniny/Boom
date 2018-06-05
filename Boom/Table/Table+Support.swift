@@ -54,14 +54,14 @@ public struct TableReloadAnimations {
 
 extension UITableViewCell: BoomCell { }
 
-public protocol TableAdapterProtocol : AbstractAdapterProtocol, Equatable { }
+public protocol TableAdapterProtocol: BoomAdapter, Equatable { }
 
 internal protocol AbstractTableHeaderFooterItem  {
 	@discardableResult
 	func dispatch(_ event: TableSectionViewEventsKey, type: SectionType, view: UIView?, section: Int, table: UITableView) -> Any?
 }
 
-public protocol TableHeaderFooterProtocol : AbstractCollectionReusableView {
+public protocol TableHeaderFooterProtocol: AbstractCollectionReusableView {
 	var section: TableSection? { get set }
 }
 

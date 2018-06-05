@@ -40,7 +40,7 @@ extension UITableViewHeaderFooterView: HeaderFooterProtocol {
 
 }
 
-extension UICollectionReusableView : HeaderFooterProtocol {
+extension UICollectionReusableView: HeaderFooterProtocol {
 	
 	/// By default it uses the same name of the class.
 	public static var reuseIdentifier: String {
@@ -71,12 +71,12 @@ internal protocol AbstractCollectionHeaderFooterItem {
 	
 }
 
-public protocol CollectionSectionProtocol : AbstractCollectionReusableView {
+public protocol CollectionSectionProtocol: AbstractCollectionReusableView {
 	var section: CollectionSection? { get set }
 }
 
 
-internal protocol AbstractAdapterProtocolFunctions {
+internal protocol BoomAdapterFunctional {
 
 	@discardableResult
 	func dispatch(_ event: CollectionAdapterEventKey, context: InternalContext) -> Any?
@@ -84,7 +84,7 @@ internal protocol AbstractAdapterProtocolFunctions {
 	func _instanceCell(in collection: UICollectionView, at indexPath: IndexPath?) -> UICollectionViewCell
 }
 
-public protocol CollectionAdapterProtocol : AbstractAdapterProtocol, Equatable {
+public protocol BoomAbstractAdapter: BoomAdapter, Equatable {
 	
 }
 

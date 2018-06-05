@@ -50,7 +50,7 @@ public class CollectionSection: Equatable, Hashable {
 	
 	/// Temporary removed models, it's used to pass the correct model
 	/// to didEndDisplay event; after sent it will be removed automatically.
-	private var temporaryRemovedModels: [IndexPath : BoomModel] = [:]
+	private var temporaryRemovedModels: [IndexPath: BoomModel] = [:]
 	
 	/// Managed manager
 	private weak var manager: CollectionManager?

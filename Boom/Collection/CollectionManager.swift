@@ -24,7 +24,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource
 	public private(set) weak var collection: UICollectionView?
 	
 	/// Registered adapters for this collection manager
-	public private(set) var adapters: [String: AbstractAdapterProtocol] = [:]
+	public private(set) var adapters: [String: BoomAdapter] = [:]
 	
 	/// Registered cell, header/footer identifiers for given collection view.
 	public private(set) var reusableRegister: ReusableRegister
@@ -182,7 +182,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource
 	/// Be sure to register all required adapters before using the collection itself.
 	///
 	/// - Parameter adapter: adapter to register
-	public func register(adapter: AbstractAdapterProtocol) {
+	public func register(adapter: BoomAdapter) {
 		let modelID = String(describing: adapter.modelType)
 		self.adapters[modelID] = adapter // register adapter
 		self.reusableRegister.registerCell(forAdapter: adapter) // register associated cell types into the collection
@@ -191,7 +191,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource
 	/// Register multiple adapters for collection.
 	///
 	/// - Parameter adapters: adapters
-	public func register(adapters: [AbstractAdapterProtocol]) {
+	public func register(adapters: [BoomAdapter]) {
 		adapters.forEach { self.register(adapter: $0) }
 	}
 	
@@ -308,21 +308,21 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource
 	///
 	/// - Parameter index: index path of the item.
 	/// - Returns: context
-	internal func context(forItemAt index: IndexPath) -> (BoomModel,AbstractAdapterProtocolFunctions) {
+	internal func context(forItemAt index: IndexPath) -> (BoomModel,BoomAdapterFunctional) {
 		let item: BoomModel = self.sections[index.section].models[index.row]
 		let modelID = String(describing: type(of: item.self))
 		guard let adapter = self.adapters[modelID] else {
 			fatalError("Failed to found an adapter for \(modelID)")
 		}
-		return (item,adapter as! AbstractAdapterProtocolFunctions)
+		return (item,adapter as! BoomAdapterFunctional)
 	}
 
-	internal func context(forModel model: BoomModel) -> AbstractAdapterProtocolFunctions {
+	internal func context(forModel model: BoomModel) -> BoomAdapterFunctional {
 		let modelID = String(describing: type(of: item.self))
 		guard let adapter = self.adapters[modelID] else {
 			fatalError("Failed to found an adapter for \(modelID)")
 		}
-		return (adapter as! AbstractAdapterProtocolFunctions)
+		return (adapter as! BoomAdapterFunctional)
 	}
 	
 	internal func adapters(forIndexPath paths: [IndexPath]) -> [PrefetchModelsGroup] {
@@ -333,7 +333,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource
 			
 			var context: PrefetchModelsGroup? = list[modelID]
 			if context == nil {
-				context = PrefetchModelsGroup(adapter: self.adapters[modelID] as! AbstractAdapterProtocolFunctions)
+				context = PrefetchModelsGroup(adapter: self.adapters[modelID] as! BoomAdapterFunctional)
 				list[modelID] = context
 			}
 			context!.models.append(model)
@@ -370,7 +370,7 @@ public extension CollectionManager {
 	
 	func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		self.adapters.forEach {
-			($0.value as! AbstractAdapterProtocolFunctions).dispatch(.endDisplay, context: InternalContext.init(nil, indexPath, cell, collectionView))
+			($0.value as! BoomAdapterFunctional).dispatch(.endDisplay, context: InternalContext.init(nil, indexPath, cell, collectionView))
 		}
 	}
 
@@ -527,11 +527,11 @@ public extension CollectionManager {
 	// MARK: Prefetching
 	
 	internal class PrefetchModelsGroup {
-		let adapter: 	AbstractAdapterProtocolFunctions
+		let adapter: 	BoomAdapterFunctional
 		var models: 	[BoomModel] = []
 		var indexPaths: [IndexPath] = []
 		
-		public init(adapter: AbstractAdapterProtocolFunctions) {
+		public init(adapter: BoomAdapterFunctional) {
 			self.adapter = adapter
 		}
 	}
@@ -643,7 +643,7 @@ public extension CollectionManager {
 		///
 		/// - Parameter adapter: adapter to register
 		@discardableResult
-		internal func registerCell(forAdapter adapter: AbstractAdapterProtocol) -> Bool {
+		internal func registerCell(forAdapter adapter: BoomAdapter) -> Bool {
 			let identifier = adapter.cellReuseIdentifier
 			guard !cellIDs.contains(identifier) else {
 				return false

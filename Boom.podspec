@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name        = 'Boom'
   s.module_name = 'Boom'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.summary     = 'UITableView and UICollectionView manager with efficient, declarative and type-safe approach.'
 
   s.homepage    = 'https://github.com/Meniny/Boom'

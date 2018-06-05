@@ -23,7 +23,7 @@ public extension BoomCell {
     /// Return true if you want to allocate the cell via class name using classic
     /// `initWithFrame`/`initWithCoder`. If your cell UI is defined inside a nib file
     /// or inside a storyboard you must return `false`.
-    static var registerAsClass : Bool {
+    static var registerAsClass: Bool {
         return false
     }
 }
@@ -44,20 +44,27 @@ public extension HeaderFooterProtocol {
     /// Return true if you want to allocate the cell via class name using classic
     /// `initWithFrame`/`initWithCoder`. If your cell UI is defined inside a nib file
     /// or inside a storyboard you must return `false`.
-    static var registerAsClass : Bool {
+    static var registerAsClass: Bool {
         return false
     }
 }
 
 // MARK: ABSTRACT PROTOCOLS
 
-public protocol AbstractAdapterProtocol {
+public protocol BoomAdapter {
     var modelType: Any.Type { get }
     var cellType: Any.Type { get }
     var cellReuseIdentifier: String { get }
     var cellClass: AnyClass { get }
     var registerAsClass: Bool { get }
+//    var id: String { get }
 }
+
+//public extension BoomAdapter {
+//    public var id: String {
+//        return String.init(describing: modelType) + String.init(describing: cellType)
+//    }
+//}
 
 // MARK: BoomModel
 

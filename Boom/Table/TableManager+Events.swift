@@ -41,7 +41,7 @@ public extension TableAdapter {
 	public struct Events<M,C> {
 		public typealias EventContext = Context<M,C>
 		
-		public var dequeue : ((EventContext) -> (Void))? = nil
+		public var dequeue: ((EventContext) -> (Void))? = nil
 		
 		public var canEdit: ((EventContext) -> Bool)? = nil
 		public var commitEdit: ((_ ctx: EventContext, _ commit: UITableViewCellEditingStyle) -> Void)? = nil

@@ -23,7 +23,7 @@ internal func set<T>(associatedValue: T?, key: String, object: AnyObject) {
 	set(associatedValue: AssociatedValue(associatedValue), key: key, object: object)
 }
 
-internal func set<T : AnyObject>(weakAssociatedValue: T?, key: String, object: AnyObject) {
+internal func set<T: AnyObject>(weakAssociatedValue: T?, key: String, object: AnyObject) {
 	set(associatedValue: AssociatedValue(weak: weakAssociatedValue), key: key, object: object)
 }
 

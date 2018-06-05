@@ -19,7 +19,7 @@ public class TableManager: NSObject, UITableViewDelegate, UITableViewDataSource,
 	public private(set) weak var tableView: UITableView?
 
 	/// Registered adapters for managed tables
-	public private(set) var adapters: [String: AbstractAdapterProtocol] = [:]
+	public private(set) var adapters: [String: BoomAdapter] = [:]
 
 	/// Registered cell reusable identifiers
 	private var cellIDs: Set<String> = []
@@ -99,7 +99,7 @@ public class TableManager: NSObject, UITableViewDelegate, UITableViewDataSource,
 	/// Adapter manage a single model type and associate it to a visual representation (a cell).
 	///
 	/// - Parameter adapter: adapter to register
-	public func register(adapter: AbstractAdapterProtocol) {
+	public func register(adapter: BoomAdapter) {
 		let modelID = String(describing: adapter.modelType)
 		self.adapters[modelID] = adapter // register adapter
 		self.registerCell(forAdapter: adapter)
@@ -108,7 +108,7 @@ public class TableManager: NSObject, UITableViewDelegate, UITableViewDataSource,
 	/// Register multiple adapters for table.
 	///
 	/// - Parameter adapters: adapters
-	public func register(adapters: [AbstractAdapterProtocol]) {
+	public func register(adapters: [BoomAdapter]) {
 		adapters.forEach { self.register(adapter: $0) }
 	}
 	
@@ -740,7 +740,7 @@ public extension TableManager {
 	/// - Parameter adapter: adapter
 	/// - Returns: `true` if cell is registered, `false` otherwise. If cell is already registered it returns `false`.
 	@discardableResult
-	internal func registerCell(forAdapter adapter: AbstractAdapterProtocol) -> Bool {
+	internal func registerCell(forAdapter adapter: BoomAdapter) -> Bool {
 		let identifier = adapter.cellReuseIdentifier
 		guard !cellIDs.contains(identifier) else {
 			return false
