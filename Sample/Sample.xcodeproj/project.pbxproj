@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CFDCBFB20C6D1AE006A24DB /* ConversationRightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFDCBF920C6D1AE006A24DB /* ConversationRightTableViewCell.swift */; };
+		5CFDCBFC20C6D1AE006A24DB /* ConversationRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CFDCBFA20C6D1AE006A24DB /* ConversationRightTableViewCell.xib */; };
+		5CFDCBFF20C6D1BA006A24DB /* ConversationLeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFDCBFD20C6D1BA006A24DB /* ConversationLeftTableViewCell.swift */; };
+		5CFDCC0020C6D1BA006A24DB /* ConversationLeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CFDCBFE20C6D1BA006A24DB /* ConversationLeftTableViewCell.xib */; };
 		6436928D20C69928006499AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6436928C20C69928006499AB /* AppDelegate.swift */; };
 		6436928F20C69928006499AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6436928E20C69928006499AB /* ViewController.swift */; };
 		6436929220C69928006499AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6436929020C69928006499AB /* Main.storyboard */; };
 		6436929420C69929006499AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6436929320C69929006499AB /* Assets.xcassets */; };
 		6436929720C69929006499AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6436929520C69929006499AB /* LaunchScreen.storyboard */; };
-		643692A020C69A03006499AB /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6436929E20C69A03006499AB /* ConversationTableViewCell.swift */; };
-		643692A120C69A03006499AB /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6436929F20C69A03006499AB /* ConversationTableViewCell.xib */; };
 		643692A620C69C13006499AB /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643692A520C69C12006499AB /* CellData.swift */; };
 		643692AD20C69EE4006499AB /* TableExampleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643692A820C69EE4006499AB /* TableExampleHeaderView.swift */; };
 		643692AE20C69EE4006499AB /* TableExampleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643692A920C69EE4006499AB /* TableExampleHeaderView.xib */; };
@@ -24,6 +26,10 @@
 
 /* Begin PBXFileReference section */
 		36D25A57ACF45BBBFAACB9C6 /* Pods_All_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_All_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CFDCBF920C6D1AE006A24DB /* ConversationRightTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationRightTableViewCell.swift; sourceTree = "<group>"; };
+		5CFDCBFA20C6D1AE006A24DB /* ConversationRightTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationRightTableViewCell.xib; sourceTree = "<group>"; };
+		5CFDCBFD20C6D1BA006A24DB /* ConversationLeftTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationLeftTableViewCell.swift; sourceTree = "<group>"; };
+		5CFDCBFE20C6D1BA006A24DB /* ConversationLeftTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationLeftTableViewCell.xib; sourceTree = "<group>"; };
 		6430C3A695C46F521222DEF0 /* Pods-All-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All-Sample/Pods-All-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		6436928920C69928006499AB /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6436928C20C69928006499AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,8 +38,6 @@
 		6436929320C69929006499AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6436929620C69929006499AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6436929820C69929006499AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6436929E20C69A03006499AB /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
-		6436929F20C69A03006499AB /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationTableViewCell.xib; sourceTree = "<group>"; };
 		643692A520C69C12006499AB /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		643692A820C69EE4006499AB /* TableExampleHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableExampleHeaderView.swift; sourceTree = "<group>"; };
 		643692A920C69EE4006499AB /* TableExampleHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableExampleHeaderView.xib; sourceTree = "<group>"; };
@@ -116,8 +120,10 @@
 		643692B120C69EE8006499AB /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6436929E20C69A03006499AB /* ConversationTableViewCell.swift */,
-				6436929F20C69A03006499AB /* ConversationTableViewCell.xib */,
+				5CFDCBFD20C6D1BA006A24DB /* ConversationLeftTableViewCell.swift */,
+				5CFDCBFE20C6D1BA006A24DB /* ConversationLeftTableViewCell.xib */,
+				5CFDCBF920C6D1AE006A24DB /* ConversationRightTableViewCell.swift */,
+				5CFDCBFA20C6D1AE006A24DB /* ConversationRightTableViewCell.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -209,10 +215,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				643692A120C69A03006499AB /* ConversationTableViewCell.xib in Resources */,
 				6436929720C69929006499AB /* LaunchScreen.storyboard in Resources */,
+				5CFDCC0020C6D1BA006A24DB /* ConversationLeftTableViewCell.xib in Resources */,
 				643692B020C69EE4006499AB /* TableFooterExample.xib in Resources */,
 				6436929420C69929006499AB /* Assets.xcassets in Resources */,
+				5CFDCBFC20C6D1AE006A24DB /* ConversationRightTableViewCell.xib in Resources */,
 				643692AE20C69EE4006499AB /* TableExampleHeaderView.xib in Resources */,
 				6436929220C69928006499AB /* Main.storyboard in Resources */,
 			);
@@ -266,9 +273,10 @@
 			files = (
 				6436928F20C69928006499AB /* ViewController.swift in Sources */,
 				6436928D20C69928006499AB /* AppDelegate.swift in Sources */,
-				643692A020C69A03006499AB /* ConversationTableViewCell.swift in Sources */,
 				643692A620C69C13006499AB /* CellData.swift in Sources */,
+				5CFDCBFB20C6D1AE006A24DB /* ConversationRightTableViewCell.swift in Sources */,
 				643692AF20C69EE4006499AB /* TableFooterExample.swift in Sources */,
+				5CFDCBFF20C6D1BA006A24DB /* ConversationLeftTableViewCell.swift in Sources */,
 				643692AD20C69EE4006499AB /* TableExampleHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

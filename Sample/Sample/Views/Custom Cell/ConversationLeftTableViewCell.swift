@@ -9,7 +9,7 @@
 import UIKit
 import Boom
 
-class ConversationTableViewCell: UITableViewCell {
+class ConversationLeftTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLbale: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -28,9 +28,9 @@ class ConversationTableViewCell: UITableViewCell {
     
 }
 
-extension ConversationTableViewCell {
+extension ConversationLeftTableViewCell {
     static var reuseIdentifier: String {
-        return "ConversationTableViewCell"
+        return "ConversationLeftTableViewCell"
     }
     
     static var registerAsClass: Bool {

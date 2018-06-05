@@ -20,7 +20,9 @@ class ViewController: UIViewController {
     }
     
     func setupUI() {
-        self.view.backgroundColor = #colorLiteral(red:0.79, green:0.80, blue:0.67, alpha:1.00)
+        self.view.backgroundColor = .white
+        self.view.clipsToBounds = true
+        self.tableView.clipsToBounds = true
         
         self.setupFlow()
     }
@@ -38,22 +40,37 @@ class ViewController: UIViewController {
     }
     
     func setupAdapter() {
-        let adapter = TableAdapter<CellData, ConversationTableViewCell>()
-        adapter.on.dequeue = { ctx in
+        let adapterl = TableAdapter<CellDataLeft, ConversationLeftTableViewCell>()
+        adapterl.on.dequeue = { ctx in
             ctx.cell?.avatarImageView.image = ctx.model.avatar
             ctx.cell?.titleLbale?.text = ctx.model.title
             ctx.cell?.subtitleLabel?.text = ctx.model.detail
         }
-        adapter.on.tap = { ctx in
+        adapterl.on.tap = { ctx in
             print("Tapped on \(ctx.model.identifier)")
             return .deselectAnimated
         }
-        self.tableView.manager.register(adapter: adapter)
+        self.tableView.manager.register(adapter: adapterl)
+        
+        let adapterr = TableAdapter<CellDataRight, ConversationRightTableViewCell>()
+        adapterr.on.dequeue = { ctx in
+            ctx.cell?.avatarImageView.image = ctx.model.avatar
+            ctx.cell?.titleLbale?.text = ctx.model.title
+            ctx.cell?.subtitleLabel?.text = ctx.model.detail
+        }
+        adapterr.on.tap = { ctx in
+            print("Tapped on \(ctx.indexPath.row)")
+            return .deselectAnimated
+        }
+        self.tableView.manager.register(adapter: adapterr)
     }
     
     func generateSection() -> TableSection {
-        let dataSet = (0..<10).map { i -> CellData in
-            return CellData.init(avatar: #imageLiteral(resourceName: "Doggie"), title: "Cell at \(i)", detail: "Boom~")
+        let dataSet = (0..<30).map { i -> BoomModel in
+            if i % 2 > 0 {
+                return CellDataLeft.init(avatar: #imageLiteral(resourceName: "Doggie"), title: "Cell at \(i)", detail: "Boom~")
+            }
+            return CellDataRight.init(avatar: #imageLiteral(resourceName: "Doggie"), title: "Cell at \(i)", detail: "Boom~")
         }
         
         let header = TableSectionView<TableExampleHeaderView>()

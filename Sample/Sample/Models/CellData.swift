@@ -9,7 +9,25 @@
 import Foundation
 import Boom
 
-struct CellData: Equatable, Hashable, BoomModel {
+struct CellDataLeft: Equatable, Hashable, BoomModel {
+    var identifier: Int {
+        return id.hashValue
+    }
+    
+    let id: String = NSUUID().uuidString
+    
+    var avatar: UIImage
+    var title: String
+    var detail: String?
+    
+    init(avatar: UIImage, title: String, detail: String?) {
+        self.avatar = avatar
+        self.title = title
+        self.detail = detail
+    }
+}
+
+struct CellDataRight: Equatable, Hashable, BoomModel {
     var identifier: Int {
         return id.hashValue
     }
