@@ -97,73 +97,129 @@ You are welcome to fork and submit pull requests.
 
 == 🔫 Usage
 
-See the Sample Project for more detail.
+=== Prepare Model
+
+For example:
 
 [source, swift, subs="verbatim,attributes"]
 ----
 import {name}
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.setupUI()
+// Confirm to BoomModel protocol
+struct CellData: Equatable, Hashable, BoomModel {
+    var identifier: Int {
+        return id.hashValue
     }
 
-    func setupUI() {
-        self.view.backgroundColor = #colorLiteral(red:0.79, green:0.80, blue:0.67, alpha:1.00)
+    let id: String = NSUUID().uuidString
 
-        self.setupFlow()
-    }
+    var avatar: UIImage
+    var title: String
+    var detail: String?
 
-    func setupFlow() {
-        self.setupAdapter()
-
-        self.tableView.manager.add(section: self.generateSection())
-
-        self.tableView.manager.rowHeight = .autoLayout(estimated: 100)
-
-        self.tableView.manager.reloadData(after: { _ in
-            return TableReloadAnimations.default()
-        }, onEnd: nil)
-    }
-
-    func setupAdapter() {
-        let adapter = TableAdapter<CellData, ConversationTableViewCell>()
-        adapter.on.dequeue = { ctx in
-            ctx.cell?.avatarImageView.image = ctx.model.avatar
-            ctx.cell?.titleLbale?.text = ctx.model.title
-            ctx.cell?.subtitleLabel?.text = ctx.model.detail
-        }
-        adapter.on.tap = { ctx in
-            print("Tapped on \(ctx.model.identifier)")
-            return .deselectAnimated
-        }
-        self.tableView.manager.register(adapter: adapter)
-    }
-
-    func generateSection() -> TableSection {
-        let dataSet = (0..<10).map { i -> CellData in
-            return CellData.init(avatar: #imageLiteral(resourceName: "Doggie"), title: "Cell at \(i)", detail: "Boom~")
-        }
-
-        let header = TableSectionView<TableExampleHeaderView>()
-        header.on.height = { _ in
-            return 50
-        }
-
-        let footer = TableSectionView<TableFooterExample>()
-        footer.on.height = { _ in
-            return 30
-        }
-        footer.on.dequeue = { ctx in
-            ctx.view?.titleLabel?.text = "\(dataSet.count) Data"
-        }
-
-        return TableSection(headerView: header, footerView: footer, models: dataSet)
+    init(avatar: UIImage, title: String, detail: String?) {
+        self.avatar = avatar
+        self.title = title
+        self.detail = detail
     }
 }
+----
+
+=== Prepare Cell
+
+For example:
+
+[source, swift, subs="verbatim,attributes"]
+----
+import {name}
+
+class ConversationTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var titleLbale: UILabel!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var subtitleLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        titleLbale.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLbale.textColor = UIColor.darkText
+
+        subtitleLabel.font = UIFont.systemFont(ofSize: 15)
+        subtitleLabel.textColor = UIColor.lightGray
+    }
+
+}
+
+// Confirm to BoomCell protocol
+extension ConversationTableViewCell {
+    static var reuseIdentifier: String {
+        return "ConversationTableViewCell"
+    }
+
+    static var registerAsClass: Bool {
+        return false
+    }
+}
+----
+
+==== Generate Adapter
+
+[source, swift, subs="verbatim,attributes"]
+----
+let adapter = TableAdapter<CellData, ConversationTableViewCell>()
+adapter.on.dequeue = { ctx in
+    ctx.cell?.avatarImageView.image = ctx.model.avatar
+    ctx.cell?.titleLbale?.text = ctx.model.title
+    ctx.cell?.subtitleLabel?.text = ctx.model.detail
+}
+adapter.on.tap = { ctx in
+    print("Tapped on \(ctx.model.identifier)")
+    return .deselectAnimated
+}
+tableView.manager.register(adapter: adapter)
+----
+
+=== Generate Sections
+
+[source, swift, subs="verbatim,attributes"]
+----
+let dataSet: [CellData] = [...]
+
+// optional: Header
+let header = TableSectionView<TableExampleHeaderView>()
+header.on.height = { _ in
+    return 50
+}
+
+// optional: Footer
+let footer = TableSectionView<TableFooterExample>()
+footer.on.height = { _ in
+    return 30
+}
+footer.on.dequeue = { ctx in
+    ctx.view?.titleLabel?.text = "\(dataSet.count) Data"
+}
+
+// generate
+let section = TableSection(headerView: header, footerView: footer, models: dataSet)
+
+// add to manager
+tableView.manager.add(section: section)
+----
+
+=== Setup Height for Rows
+
+[source, swift, subs="verbatim,attributes"]
+----
+tableView.manager.rowHeight = .autoLayout(estimated: 100)
+----
+
+=== Reload
+
+[source, swift, subs="verbatim,attributes"]
+----
+tableView.manager.reloadData(after: { _ in
+    return TableReloadAnimations.default()
+}, onEnd: nil)
 ----
