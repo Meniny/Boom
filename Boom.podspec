@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name        = 'Boom'
   s.module_name = 'Boom'
-  s.version     = '1.0.1'
+  s.version     = '1.1.0'
   s.summary     = 'UITableView and UICollectionView manager with efficient, declarative and type-safe approach.'
 
   s.homepage    = 'https://github.com/Meniny/Boom'
@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
   s.source_files        = 'Boom/**/*.swift'
 
   s.requires_arc        = true
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1' }
-  s.swift_version       = '4.1'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5' }
+  s.swift_version       = '5'
 end

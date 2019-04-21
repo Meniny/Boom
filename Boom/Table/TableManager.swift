@@ -52,11 +52,11 @@ public class TableManager: NSObject, UITableViewDelegate, UITableViewDataSource,
 				self.tableView?.rowHeight = h
 				self.tableView?.estimatedRowHeight = h
 			case .autoLayout(let estimate):
-				self.tableView?.rowHeight = UITableViewAutomaticDimension
+				self.tableView?.rowHeight = UITableView.automaticDimension
 				self.tableView?.estimatedRowHeight = estimate
 			case .default:
-				self.tableView?.rowHeight = UITableViewAutomaticDimension
-				self.tableView?.estimatedRowHeight = UITableViewAutomaticDimension
+				self.tableView?.rowHeight = UITableView.automaticDimension
+				self.tableView?.estimatedRowHeight = UITableView.automaticDimension
 			}
 		}
 	}
@@ -389,7 +389,7 @@ public extension TableManager {
 	public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		let item = (self.sections[section].headerView as? AbstractTableHeaderFooterItem)
 		guard let height = item?.dispatch(.height, type: .header, view: nil, section: section, table: tableView) as? CGFloat else {
-			return (self.headerHeight ?? UITableViewAutomaticDimension)
+			return (self.headerHeight ?? UITableView.automaticDimension)
 		}
 		return height
 	}
@@ -397,7 +397,7 @@ public extension TableManager {
 	public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 		let item = (self.sections[section].footerView as? AbstractTableHeaderFooterItem)
 		guard let height = item?.dispatch(.height, type: .footer, view: nil, section: section, table: tableView) as? CGFloat else {
-			return (self.footerHeight ?? UITableViewAutomaticDimension)
+			return (self.footerHeight ?? UITableView.automaticDimension)
 		}
 		return height
 	}
@@ -406,7 +406,7 @@ public extension TableManager {
 		let item = (self.sections[section].headerView as? AbstractTableHeaderFooterItem)
 		guard let estHeight = item?.dispatch(.estimatedHeight, type: .header, view: nil, section: section, table: tableView) as? CGFloat else {
 			guard let height = item?.dispatch(.height, type: .header, view: nil, section: section, table: tableView) as? CGFloat else {
-				return (self.headerHeight ?? UITableViewAutomaticDimension)
+				return (self.headerHeight ?? UITableView.automaticDimension)
 			}
 			return height
 		}
@@ -417,7 +417,7 @@ public extension TableManager {
 		let item = (self.sections[section].footerView as? AbstractTableHeaderFooterItem)
 		guard let height = item?.dispatch(.estimatedHeight,type: .footer, view: nil, section: section, table: tableView) as? CGFloat else {
 			guard let height = item?.dispatch(.height, type: .footer, view: nil, section: section, table: tableView) as? CGFloat else {
-				return (self.footerHeight ?? UITableViewAutomaticDimension)
+				return (self.footerHeight ?? UITableView.automaticDimension)
 			}
 			return height
 		}
@@ -452,7 +452,7 @@ public extension TableManager {
 	
 	// Inserting or Deleting Table Rows
 	
-	public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+	public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		let (model,adapter) = self.context(forItemAt: indexPath)
 		adapter.dispatch(.commitEdit, context: InternalContext(model, indexPath, nil, tableView, param1: editingStyle))
 	}
@@ -482,9 +482,9 @@ public extension TableManager {
 		switch self.rowHeight {
 		case .default:
 			let (model,adapter) = self.context(forItemAt: indexPath)
-			return (adapter.dispatch(.rowHeight, context: InternalContext(model, indexPath, nil, tableView)) as? CGFloat) ?? UITableViewAutomaticDimension
+			return (adapter.dispatch(.rowHeight, context: InternalContext(model, indexPath, nil, tableView)) as? CGFloat) ?? UITableView.automaticDimension
 		case .autoLayout(_):
-			return UITableViewAutomaticDimension
+			return UITableView.automaticDimension
 		default:
 			return self.tableView!.rowHeight
 		}
@@ -492,7 +492,7 @@ public extension TableManager {
 	
 	public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		let (model,adapter) = self.context(forItemAt: indexPath)
-		return ((adapter.dispatch(.rowHeightEstimated, context: InternalContext(model, indexPath, nil, tableView)) as? CGFloat) ?? UITableViewAutomaticDimension)
+		return ((adapter.dispatch(.rowHeightEstimated, context: InternalContext(model, indexPath, nil, tableView)) as? CGFloat) ?? UITableView.automaticDimension)
 	}
 	
 	public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
@@ -558,9 +558,9 @@ public extension TableManager {
 		adapter.dispatch(.didEndEdit, context: InternalContext(model, indexPath!, nil, tableView))
 	}
 	
-	public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+	public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 		let (model,adapter) = self.context(forItemAt: indexPath)
-		return ((adapter.dispatch(.editStyle, context: InternalContext(model, indexPath, nil, tableView)) as? UITableViewCellEditingStyle) ?? .none)
+		return ((adapter.dispatch(.editStyle, context: InternalContext(model, indexPath, nil, tableView)) as? UITableViewCell.EditingStyle) ?? .none)
 	}
 	
 	public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

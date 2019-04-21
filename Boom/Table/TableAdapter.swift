@@ -52,7 +52,7 @@ public class TableAdapter<M: BoomModel, C: BoomCell>: TableAdapterProtocol,Table
 			
 		case .commitEdit:
 			guard let callback = self.on.commitEdit else { return nil }
-			return callback(Context<M,C>(generic: context), (context.param1 as! UITableViewCellEditingStyle))
+            return callback(Context<M,C>(generic: context), (context.param1 as! UITableViewCell.EditingStyle))
 			
 		case .canMoveRow:
 			guard let callback = self.on.canMoveRow else { return nil }
